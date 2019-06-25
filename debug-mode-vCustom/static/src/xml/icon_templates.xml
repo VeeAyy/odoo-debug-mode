@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<templates>
+    <t t-name="Icon">
+
+        <script type="text/javascript">
+            function checkUrl(){
+                return (window.location.href.indexOf("?debug") > -1)
+            }
+
+            function isKeyPressed(event) {
+                if (event.charCode == 65 || event.charCode == 97) {
+                    document.getElementById("image-bug").src = "/debug-mode-vCustom/static/src/js/assetsdebug.svg";
+                    document.getElementById("debug-mode").href= "?debug=assets";
+                    document.getElementById("debug-mode").title = "Turn off Debug Assets mode";
+                }
+            }
+
+            if (checkUrl()) {
+                    document.getElementById("image-bug").src = "/debug-mode-vCustom/static/src/js/indebug.svg";
+                    document.getElementById("debug-mode").href = "/web";
+                    document.getElementById("debug-mode").title = "Turn off Debug mode";
+                }
+            else{
+                document.getElementById("image-bug").src = "/debug-mode-vCustom/static/src/js/outdebug.svg";
+                document.getElementById("debug-mode").href= "?debug";
+                document.getElementById("debug-mode").title = "Turn on Debug mode";
+            }
+
+            if (window.location.href.indexOf("?debug=assets") > -1){
+                document.getElementById("image-bug").src = "/debug-mode-vCustom/static/src/js/assetsdebug.svg";
+                document.getElementById("debug-mode").href= "/web";
+                document.getElementById("debug-mode").title = "Turn off Debug Assets mode";
+            }
+
+
+            console.log(checkUrl());
+
+        </script>
+
+        <li class="o_mail_systray_item">
+            <a id="debug-mode" class="dropdown-toggle o-no-caret" title="#" href="#"
+               style="display: block; "
+               onkeypress="isKeyPressed(event)">
+                    <img id="image-bug" src="#" align="center" width="32px" heigth="32px"/>
+            </a>
+        </li>
+    </t>
+</templates>
+
